@@ -1,8 +1,6 @@
 # 🤖 OpenAI-Compatible API Mimic
 
 <div align="center">
-  
-![OpenAI-Compatible API Mimic](https://raw.githubusercontent.com/yctimlin/OpenAI-Compatible-API-Mimic/main/.github/banner.png)
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.104.0%2B-green.svg)](https://fastapi.tiangolo.com/)
@@ -10,7 +8,6 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)](https://www.docker.com/)
 [![GitHub stars](https://img.shields.io/github/stars/yctimlin/OpenAI-Compatible-API-Mimic?style=social)](https://github.com/yctimlin/OpenAI-Compatible-API-Mimic/stargazers)
-[![Twitter Follow](https://img.shields.io/twitter/follow/yctimlin?style=social)](https://twitter.com/yctimlin)
 
 **Drop-in replacement for the OpenAI API that works with any backend**
 </div>
