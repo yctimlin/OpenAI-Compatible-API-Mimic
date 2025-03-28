@@ -1,12 +1,21 @@
 # 🤖 OpenAI-Compatible API Mimic
 
+<div align="center">
+  
+![OpenAI-Compatible API Mimic](https://raw.githubusercontent.com/yctimlin/OpenAI-Compatible-API-Mimic/main/.github/banner.png)
+
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.104.0%2B-green.svg)](https://fastapi.tiangolo.com/)
 [![OpenAI Compatible](https://img.shields.io/badge/OpenAI-Compatible-orange.svg)](https://platform.openai.com/docs/api-reference)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)](https://www.docker.com/)
+[![GitHub stars](https://img.shields.io/github/stars/yctimlin/OpenAI-Compatible-API-Mimic?style=social)](https://github.com/yctimlin/OpenAI-Compatible-API-Mimic/stargazers)
+[![Twitter Follow](https://img.shields.io/twitter/follow/yctimlin?style=social)](https://twitter.com/yctimlin)
 
-A powerful, modular proxy service that mimics the OpenAI API interface, allowing you to transform requests to any OpenAI-compatible backend while maintaining full compatibility with applications that use the OpenAI API.
+**Drop-in replacement for the OpenAI API that works with any backend**
+</div>
+
+A powerful, modular proxy service that mimics the OpenAI API interface, allowing you to transform requests to any OpenAI-compatible backend while maintaining full compatibility with applications that use the OpenAI API. Perfect for AI teams working with custom LLM deployments, private models, or alternative providers.
 
 ## 🌟 Features
 
@@ -48,6 +57,9 @@ A powerful, modular proxy service that mimics the OpenAI API interface, allowing
 - [Project Structure](#-project-structure)
 - [API Documentation](#-api-documentation)
 - [Usage Examples](#-usage-examples)
+- [Community & Support](#-community--support)
+- [Roadmap](#-roadmap)
+- [FAQ](#-faq)
 - [Contributing](#-contributing)
 - [License](#-license)
 
@@ -76,13 +88,18 @@ LOG_LEVEL=INFO
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/openai-api-mimic.git
-   cd openai-api-mimic
+   git clone https://github.com/yctimlin/OpenAI-Compatible-API-Mimic.git
+   cd OpenAI-Compatible-API-Mimic
    ```
 
 2. Install dependencies:
    ```bash
    pip install -r requirements.txt
+   ```
+
+   Or use our setup script:
+   ```bash
+   ./setup.sh
    ```
 
 ### Running Locally
@@ -222,6 +239,35 @@ response = llm.invoke(messages)
 print(response.content)
 ```
 
+## 👥 Community & Support
+
+- [GitHub Discussions](https://github.com/yctimlin/OpenAI-Compatible-API-Mimic/discussions) - Ask questions and share ideas
+- [GitHub Issues](https://github.com/yctimlin/OpenAI-Compatible-API-Mimic/issues) - Report bugs or request features
+- [Discord Server](https://discord.gg/example) - Join our community
+
+## 🗺️ Roadmap
+
+- [ ] Support for Azure OpenAI API compatibility
+- [ ] Additional logging and monitoring options
+- [ ] Helm chart for Kubernetes deployment
+- [ ] Authentication and rate limiting
+- [ ] Request/response validation middleware
+- [ ] Support for DALL-E 3 and other image generation endpoints
+
+## ❓ FAQ
+
+### How does this differ from the OpenAI API?
+
+This project creates a compatibility layer between your API backend and OpenAI's API format. It allows you to maintain your own backend implementation while providing a standard OpenAI-compatible interface for client applications.
+
+### Can I use this with any LLM provider?
+
+Yes, as long as your backend can fulfill the requirements of the API - typically providing chat completions and embeddings. You'll need to implement the appropriate transformations in the backend utilities.
+
+### Is this suitable for production use?
+
+Yes, the architecture follows best practices for production environments, including proper error handling, logging, and configuration. However, you should implement appropriate authentication and rate limiting for your specific use case.
+
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
@@ -231,6 +277,12 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 3. Commit your changes: `git commit -m 'Add some amazing feature'`
 4. Push to the branch: `git push origin feature/amazing-feature`
 5. Open a Pull Request
+
+### Contributors
+
+<a href="https://github.com/yctimlin/OpenAI-Compatible-API-Mimic/graphs/contributors">
+  <img src="https://contributors-img.web.app/image?repo=yctimlin/OpenAI-Compatible-API-Mimic" />
+</a>
 
 ## 📄 License
 
@@ -244,4 +296,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ---
 
-Built with ❤️ for the AI developer community
+<p align="center">If you find this project helpful, please consider giving it a star ⭐</p>
+<p align="center">Built with ❤️ for the AI developer community</p>
