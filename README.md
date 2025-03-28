@@ -1,49 +1,247 @@
-# OpenAI-Compatible API Mimic
+# 🤖 OpenAI-Compatible API Mimic
 
-## Introduction
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.104.0%2B-green.svg)](https://fastapi.tiangolo.com/)
+[![OpenAI Compatible](https://img.shields.io/badge/OpenAI-Compatible-orange.svg)](https://platform.openai.com/docs/api-reference)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)](https://www.docker.com/)
 
-This project provides a mimic API compatible with OpenAI's official API. It enables users to transform requests into callable OpenAI official API commands. This tool is particularly useful for developers who wish to integrate OpenAI's AI functionalities into their applications with ease.
+A powerful, modular proxy service that mimics the OpenAI API interface, allowing you to transform requests to any OpenAI-compatible backend while maintaining full compatibility with applications that use the OpenAI API.
 
-## Features
+## 🌟 Features
 
-- **API Compatibility:** Ensures compatibility with OpenAI's API version 1.35 and above, including support for tool calls.
-- **Flexible Integration with Frameworks:** Designed for easy integration with various frameworks, including Langchain, to enhance AI application development.
-- **Chat and Embedding Endpoints:** Supports chat completion and embedding functionalities.
-- **Token Management:** Automated token refresh for uninterrupted service.
-- **Docker Support:** Containerized for easy deployment and scalability.
-- **FastAPI Framework:** Built using FastAPI for high performance and easy asynchronous support.
+- **Complete OpenAI API Compatibility:** Ensures compatibility with OpenAI's API version 2024-10-21 and above, including support for:
+  - ✅ Chat completions with streaming
+  - ✅ Function/tool calling with structured outputs
+  - ✅ JSON mode responses
+  - ✅ Multimodal content (vision models)
+  - ✅ Text-to-speech and speech-to-text
+  - ✅ Image generation (DALL-E)
+  - ✅ Latest OpenAI models support (GPT-4o, GPT-4-turbo, etc.)
+  - ✅ Third-generation embeddings models
+  - ✅ Full models discovery API
 
-## Getting Started
+- **Seamless Framework Integration:** Works with any client that supports the OpenAI API:
+  - ✅ Official OpenAI SDKs (Python, Node.js, etc.)
+  - ✅ LangChain & LangChain.js
+  - ✅ LlamaIndex
+  - ✅ Semantic Kernel
+  - ✅ Any other OpenAI-compatible framework
+
+- **Enterprise-Ready:**
+  - ✅ Modular, maintainable code architecture
+  - ✅ Comprehensive logging
+  - ✅ Error handling with automatic token refresh
+  - ✅ Easy configuration through environment variables
+  - ✅ Docker containerization for simple deployment
+  - ✅ Built on FastAPI for high performance
+
+## 📋 Table of Contents
+
+- [Features](#-features)
+- [Getting Started](#-getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Configuration](#configuration)
+  - [Installation](#installation)
+  - [Running Locally](#running-locally)
+  - [Docker Deployment](#docker-deployment)
+- [Project Structure](#-project-structure)
+- [API Documentation](#-api-documentation)
+- [Usage Examples](#-usage-examples)
+- [Contributing](#-contributing)
+- [License](#-license)
+
+## 🚀 Getting Started
 
 ### Prerequisites
 
-Ensure you have Docker installed on your system to run the application as a container. Alternatively, you can run it directly with Python (version 3.9 or later).
+- Python 3.10 or higher
+- Docker (optional, for containerized deployment)
+
+### Configuration
+
+Create a `.env` file in the root directory with the following variables:
+
+```
+TOKEN_URL=your_url_to_get_token
+CHAT_API_URL=your_url_of_base_api
+EMBEDDING_API_URL=your_url_of_base_api
+AUTH_CODE=your_authorization_code
+VERIFY_SSL=False
+PORT=8000
+LOG_LEVEL=INFO
+```
 
 ### Installation
 
 1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/openai-api-mimic.git
+   cd openai-api-mimic
+   ```
 
-2. Navigate to the cloned directory:
-
-3. To run using Docker:
-   ```
-   docker build -t openai-api-mimic .
-   docker run -p 8000:8000 openai-api-mimic
-   ```
-   Or to run directly with Python:
-   ```
+2. Install dependencies:
+   ```bash
    pip install -r requirements.txt
-   python app.py
    ```
 
-### Usage
+### Running Locally
 
-Send POST requests to `/v1/chat/completions` for chat completions and `/v1/embeddings` for embeddings.
+Start the API server:
 
-used in Langchain:
+```bash
+python main.py
 ```
-from langchain.chat_models import ChatOpenAI
 
-llm = ChatOpenAI(openai_api_base="http://127.0.0.1:8000/v1",
-                 openai_api_key="None",
-                 model="gpt-35-turbo-16k")
+The API will be available at `http://localhost:8000` with interactive documentation at `http://localhost:8000/docs`.
+
+### Docker Deployment
+
+1. Build the Docker image:
+   ```bash
+   docker build -t openai-api-mimic .
+   ```
+
+2. Run the container:
+   ```bash
+   docker run -p 8000:8000 --env-file .env openai-api-mimic
+   ```
+
+## 📂 Project Structure
+
+```
+openai-api-mimic/
+├── src/                    # Source code directory
+│   ├── api/                # API route definitions
+│   │   ├── chat.py         # Chat completions endpoint
+│   │   ├── embeddings.py   # Embeddings endpoint
+│   │   └── models.py       # Models listing endpoint
+│   ├── config/             # Configuration management
+│   │   └── settings.py     # Application settings
+│   ├── models/             # Pydantic schema definitions
+│   │   └── schema.py       # Request/response schemas
+│   ├── utils/              # Utility functions
+│   │   ├── api.py          # API interaction utilities
+│   │   └── models.py       # Model handling utilities
+│   ├── app.py              # FastAPI application instance
+│   └── __init__.py         # Package initialization
+├── main.py                 # Application entry point
+├── requirements.txt        # Python dependencies
+├── Dockerfile              # Container definition
+├── .env.example            # Example environment variables
+└── README.md               # Project documentation
+```
+
+## 📚 API Documentation
+
+Once the server is running, you can access the interactive API documentation at:
+
+- Swagger UI: `http://localhost:8000/docs`
+- ReDoc: `http://localhost:8000/redoc`
+
+### API Endpoints
+
+- **GET /**  
+  Health check endpoint
+
+- **GET /v1/models**  
+  List all available models
+
+- **GET /v1/models/{model_id}**  
+  Get information about a specific model
+
+- **POST /v1/chat/completions**  
+  Create a chat completion
+
+- **POST /v1/embeddings**  
+  Create embeddings from input text
+
+## 🧩 Usage Examples
+
+### Python with OpenAI SDK
+
+```python
+import openai
+
+client = openai.OpenAI(
+    base_url="http://localhost:8000/v1",
+    api_key="dummy-key"  # API key is not validated but required by the SDK
+)
+
+# Chat completion
+response = client.chat.completions.create(
+    model="gpt-4o",
+    messages=[
+        {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "user", "content": "Hello, how are you?"}
+    ],
+    temperature=0.7
+)
+
+print(response.choices[0].message.content)
+
+# Streaming example
+for chunk in client.chat.completions.create(
+    model="gpt-4-turbo",
+    messages=[
+        {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "user", "content": "Write a short poem about AI."}
+    ],
+    stream=True
+):
+    if chunk.choices[0].delta.content:
+        print(chunk.choices[0].delta.content, end="")
+
+# Embeddings
+embedding_response = client.embeddings.create(
+    model="text-embedding-3-small",
+    input="The quick brown fox jumps over the lazy dog"
+)
+
+print(f"Embedding dimension: {len(embedding_response.data[0].embedding)}")
+```
+
+### LangChain Integration
+
+```python
+from langchain.chat_models import ChatOpenAI
+from langchain.schema import HumanMessage, SystemMessage
+
+llm = ChatOpenAI(
+    openai_api_base="http://localhost:8000/v1",
+    openai_api_key="dummy-key",
+    model="gpt-4o"
+)
+
+messages = [
+    SystemMessage(content="You are a helpful assistant."),
+    HumanMessage(content="Explain how APIs work in simple terms.")
+]
+
+response = llm.invoke(messages)
+print(response.content)
+```
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch: `git checkout -b feature/amazing-feature`
+3. Commit your changes: `git commit -m 'Add some amazing feature'`
+4. Push to the branch: `git push origin feature/amazing-feature`
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🔗 Related Projects
+
+- [OpenAI API Documentation](https://platform.openai.com/docs/api-reference)
+- [FastAPI](https://fastapi.tiangolo.com/)
+- [LangChain](https://www.langchain.com/)
+
+---
+
+Built with ❤️ for the AI developer community
